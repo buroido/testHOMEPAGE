@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Illustration Gallery | Portfolio</title>
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: #ffffff;
+      --main: #ec4899;
+      --main-dark: #be185d;
+      --accent: #fbbf24;
+      --text: #2f2430;
+      --sub: #7c6f7c;
+      --border: #f3d9e8;
+      --soft: #fde7f3;
+      --shadow: 0 18px 45px rgba(236, 72, 153, 0.14);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(251, 191, 36, 0.22), transparent 32%),
+        radial-gradient(circle at top right, rgba(236, 72, 153, 0.22), transparent 36%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 247, 251, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(243, 217, 232, 0.9);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      color: var(--main-dark);
+      letter-spacing: 0.03em;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--main), var(--accent));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 18px;
+      box-shadow: 0 8px 18px rgba(236, 72, 153, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+      color: var(--sub);
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--main);
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      min-height: 76vh;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      align-items: center;
+      gap: 52px;
+      padding: 86px 0 64px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--main-dark);
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .label::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.06;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--main);
+    }
+
+    .hero p {
+      color: var(--sub);
+      font-size: 18px;
+      max-width: 640px;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-weight: 900;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--main);
+      color: white;
+      box-shadow: 0 14px 28px rgba(236, 72, 153, 0.22);
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--main-dark);
+      border: 1px solid var(--border);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      transform: rotate(1deg);
+    }
+
+    .hero-art {
+      min-height: 230px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #fce7f3, #fef3c7);
+      box-shadow: var(--shadow);
+      border: 8px solid white;
+      display: grid;
+      place-items: center;
+      color: var(--main-dark);
+      font-size: 54px;
+      font-weight: 900;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-art:nth-child(2) {
+      transform: translateY(42px) rotate(3deg);
+      background: linear-gradient(135deg, #e0f2fe, #fce7f3);
+    }
+
+    .hero-art:nth-child(3) {
+      transform: translateY(-10px) rotate(-4deg);
+      background: linear-gradient(135deg, #dcfce7, #fef3c7);
+    }
+
+    .hero-art:nth-child(4) {
+      transform: translateY(28px) rotate(-2deg);
+      background: linear-gradient(135deg, #ede9fe, #fce7f3);
+    }
+
+    .hero-art::after {
+      content: "SAMPLE IMAGE";
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: rgba(190, 24, 93, 0.45);
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-title small {
+      color: var(--main);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 4.5vw, 48px);
+      line-height: 1.2;
+      margin-top: 8px;
+    }
+
+    .section-title p {
+      color: var(--sub);
+      max-width: 420px;
+    }
+
+    .filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .filter span {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--sub);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .filter span.active {
+      background: var(--main);
+      color: white;
+      border-color: var(--main);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .art-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 34px rgba(47, 36, 48, 0.06);
+      transition: 0.22s ease;
+    }
+
+    .art-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .art-image {
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, #fce7f3, #fef3c7);
+      display: grid;
+      place-items: center;
+      color: rgba(190, 24, 93, 0.7);
+      font-weight: 900;
+      font-size: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .art-card:nth-child(2) .art-image { background: linear-gradient(135deg, #e0f2fe, #fce7f3); }
+    .art-card:nth-child(3) .art-image { background: linear-gradient(135deg, #dcfce7, #fef3c7); }
+    .art-card:nth-child(4) .art-image { background: linear-gradient(135deg, #ede9fe, #fce7f3); }
+    .art-card:nth-child(5) .art-image { background: linear-gradient(135deg, #ffedd5, #fce7f3); }
+    .art-card:nth-child(6) .art-image { background: linear-gradient(135deg, #dbeafe, #fef3c7); }
+
+    .art-image::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.34);
+      top: -52px;
+      right: -52px;
+    }
+
+    .art-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .art-info {
+      padding: 20px;
+    }
+
+    .art-info h3 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .art-info p {
+      color: var(--sub);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tags span {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--main-dark);
+      font-weight: 800;
+    }
+
+    .about-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 34px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-icon {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--main), var(--accent));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 64px;
+      font-weight: 900;
+      margin: 0 auto;
+      box-shadow: 0 18px 35px rgba(236, 72, 153, 0.22);
+    }
+
+    .about-box h2 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .about-box p {
+      color: var(--sub);
+      margin-bottom: 18px;
+    }
+
+    .sns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .sns a {
+      display: inline-flex;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--main-dark);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .commission {
+      background: linear-gradient(135deg, var(--main), var(--main-dark));
+      color: white;
+      border-radius: 36px;
+      padding: 46px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .commission p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 10px;
+    }
+
+    .commission .btn {
+      background: white;
+      color: var(--main-dark);
+    }
+
+    footer {
+      padding: 36px 24px;
+      text-align: center;
+      color: var(--sub);
+      font-size: 14px;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .about-box,
+      .commission {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .hero-art {
+        min-height: 150px;
+        border-radius: 22px;
+        font-size: 34px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box,
+      .commission {
+        padding: 28px;
+        border-radius: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="#top">
+        <span class="logo-mark">✦</span>
+        <span>Illustration Room</span>
+      </a>
+      <div class="nav-links">
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#commission">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="container">
+      <section class="hero">
+        <div>
+          <div class="label">Original Illustration Gallery</div>
+          <h1>描いた世界を、<br><span>ここに集める。</span></h1>
+          <p>
+            オリジナルイラスト、キャラクターデザイン、ラフ、ファンアートなどを公開するためのギャラリーサイトです。
+            作品の雰囲気や制作時期、使用ツールをまとめて見せられる構成にしています。
+          </p>
+          <div class="buttons">
+            <a class="btn primary" href="#gallery">作品を見る</a>
+            <a class="btn secondary" href="#about">作者について</a>
+          </div>
+        </div>
+
+        <div class="hero-gallery" aria-label="メインビジュアル">
+          <div class="hero-art">01</div>
+          <div class="hero-art">02</div>
+          <div class="hero-art">03</div>
+          <div class="hero-art">04</div>
+        </div>
+      </section>
+    </div>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <small>GALLERY</small>
+            <h2>Illustrations</h2>
+          </div>
+          <p>
+            画像を差し替える場合は、各カード内の <strong>div class="art-image"</strong> の中に
+            <strong>&lt;img src="画像ファイル名" alt="説明"&gt;</strong> を入れてください。
+          </p>
+        </div>
+
+        <div class="filter" aria-label="作品カテゴリ">
+          <span class="active">All</span>
+          <span>Original</span>
+          <span>Character</span>
+          <span>Fan Art</span>
+          <span>Sketch</span>
+        </div>
+
+        <div class="gallery">
+          <article class="art-card">
+            <div class="art-image">01</div>
+            <div class="art-info">
+              <h3>星降る街の少女</h3>
+              <p>夜空と街灯をテーマにしたオリジナルイラスト。</p>
+              <div class="tags">
+                <span>Original</span><span>2026</span><span>CLIP STUDIO</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <div class="art-image">02</div>
+            <div class="art-info">
+              <h3>水色の記憶</h3>
+              <p>透明感のある色合いを意識したキャラクターイラスト。</p>
+              <div class="tags">
+                <span>Character</span><span>Blue</span><span>Digital</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <div class="art-image">03</div>
+            <div class="art-info">
+              <h3>放課後スケッチ</h3>
+              <p>日常の一瞬を切り取ったラフ寄りの作品。</p>
+              <div class="tags">
+                <span>Sketch</span><span>Daily</span><span>Rough</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <div class="art-image">04</div>
+            <div class="art-info">
+              <h3>夢の入口</h3>
+              <p>ファンタジー世界の入口をイメージした一枚。</p>
+              <div class="tags">
+                <span>Fantasy</span><span>Original</span><span>World</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <div class="art-image">05</div>
+            <div class="art-info">
+              <h3>夕暮れの横顔</h3>
+              <p>逆光と表情のニュアンスを練習した作品。</p>
+              <div class="tags">
+                <span>Practice</span><span>Portrait</span><span>Warm</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <div class="art-image">06</div>
+            <div class="art-info">
+              <h3>小さな冒険者</h3>
+              <p>ゲームに登場しそうなキャラクターを意識したデザイン。</p>
+              <div class="tags">
+                <span>Character Design</span><span>Game</span><span>OC</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-box">
+          <div class="profile-icon">絵</div>
+          <div>
+            <h2>About Artist</h2>
+            <p>
+              ここには作者プロフィールを書きます。好きなジャンル、得意な表現、使っているソフト、
+              イラストを描くときに大事にしていることなどを書くと、作品サイトらしくなります。
+            </p>
+            <p>
+              例：キャラクターの雰囲気や表情、色の空気感を大切にしながら、オリジナル作品を中心に制作しています。
+            </p>
+            <div class="sns">
+              <a href="#">X / Twitter</a>
+              <a href="#">Pixiv</a>
+              <a href="#">Instagram</a>
+              <a href="#">Skeb</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="commission">
+      <div class="container">
+        <div class="commission">
+          <div>
+            <h2>Contact / Commission</h2>
+            <p>
+              依頼受付、展示のお知らせ、SNSリンクなどをここにまとめられます。
+              メールアドレスや各種リンクは自分用に差し替えてください。
+            </p>
+          </div>
+          <a class="btn" href="mailto:your-email@example.com">Mail</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Illustration Room. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
